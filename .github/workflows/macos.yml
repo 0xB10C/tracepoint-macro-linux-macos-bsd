@@ -1,0 +1,18 @@
+name: MacOS
+on:
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  print-dtrace-output:
+    name: Prints the `dtrace -h -s probes.d` output on MacOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: print probes.h
+        run: |
+          dtrace -h -s probes.d
+          cat probes.h
