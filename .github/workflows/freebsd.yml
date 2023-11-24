@@ -1,0 +1,22 @@
+name: FreeBSD
+on:
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  print-dtrace-output:
+    runs-on: ubuntu-22.04
+    name: Prints the `dtrace -h -s probes.d` output on FreeBSD
+    steps:
+    - uses: actions/checkout@v4
+    - name: in FreeBSD
+      uses: vmactions/freebsd-vm@v1
+      with:
+        usesh: true
+        run: |
+          dtrace -h -s probes.d
+          cat probes.h
+
+
+
