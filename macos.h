@@ -14,49 +14,33 @@
 extern "C" {
 #endif
 
-#define CONTEXT_STABILITY "___dtrace_stability$context$v1$1_1_0_1_1_0_1_1_0_1_1_0_1_1_0"
+#define NET_STABILITY "___dtrace_stability$net$v1$1_1_0_1_1_0_1_1_0_1_1_0_1_1_0"
 
-#define CONTEXT_TYPEDEFS "___dtrace_typedefs$context$v2"
+#define NET_TYPEDEFS "___dtrace_typedefs$net$v2"
 
 #if !defined(DTRACE_PROBES_DISABLED) || !DTRACE_PROBES_DISABLED
 
-#define	CONTEXT_EVENT_ARGS(arg0, arg1, arg2, arg3) \
+#define	NET_INBOUND_MESSAGE(arg0, arg1, arg2, arg3) \
 do { \
-	__asm__ volatile(".reference " CONTEXT_TYPEDEFS); \
-	__dtrace_probe$context$event_args$v1$75696e74385f74$75696e7433325f74$75696e7436345f74$756e7369676e65642063686172202a(arg0, arg1, arg2, arg3); \
-	__asm__ volatile(".reference " CONTEXT_STABILITY); \
+	__asm__ volatile(".reference " NET_TYPEDEFS); \
+	__dtrace_probe$net$inbound_message$v1$75696e74385f74$75696e7433325f74$75696e7436345f74$756e7369676e65642063686172202a(arg0, arg1, arg2, arg3); \
+	__asm__ volatile(".reference " NET_STABILITY); \
 } while (0)
-#define	CONTEXT_EVENT_ARGS_ENABLED() \
-	({ int _r = __dtrace_isenabled$context$event_args$v1(); \
-		__asm__ volatile(""); \
-		_r; })
-#define	CONTEXT_EVENT_SIMPLE() \
-do { \
-	__asm__ volatile(".reference " CONTEXT_TYPEDEFS); \
-	__dtrace_probe$context$event_simple$v1(); \
-	__asm__ volatile(".reference " CONTEXT_STABILITY); \
-} while (0)
-#define	CONTEXT_EVENT_SIMPLE_ENABLED() \
-	({ int _r = __dtrace_isenabled$context$event_simple$v1(); \
+#define	NET_INBOUND_MESSAGE_ENABLED() \
+	({ int _r = __dtrace_isenabled$net$inbound_message$v1(); \
 		__asm__ volatile(""); \
 		_r; })
 
 
-extern void __dtrace_probe$context$event_args$v1$75696e74385f74$75696e7433325f74$75696e7436345f74$756e7369676e65642063686172202a(uint8_t, uint32_t, uint64_t, const unsigned char *);
-extern int __dtrace_isenabled$context$event_args$v1(void);
-extern void __dtrace_probe$context$event_simple$v1(void);
-extern int __dtrace_isenabled$context$event_simple$v1(void);
+extern void __dtrace_probe$net$inbound_message$v1$75696e74385f74$75696e7433325f74$75696e7436345f74$756e7369676e65642063686172202a(uint8_t, uint32_t, uint64_t, const unsigned char *);
+extern int __dtrace_isenabled$net$inbound_message$v1(void);
 
 #else
 
-#define	CONTEXT_EVENT_ARGS(arg0, arg1, arg2, arg3) \
+#define	NET_INBOUND_MESSAGE(arg0, arg1, arg2, arg3) \
 do { \
 	} while (0)
-#define	CONTEXT_EVENT_ARGS_ENABLED() (0)
-#define	CONTEXT_EVENT_SIMPLE() \
-do { \
-	} while (0)
-#define	CONTEXT_EVENT_SIMPLE_ENABLED() (0)
+#define	NET_INBOUND_MESSAGE_ENABLED() (0)
 
 #endif /* !defined(DTRACE_PROBES_DISABLED) || !DTRACE_PROBES_DISABLED */
 
